@@ -35,7 +35,7 @@ const ServiceCard = ({ index, title, icon }) => {
 
 const About = () => {
   return (
-    <>
+    <div className="pb-32"> {/* Added padding for footer space */}
       {/* Introduction Section */}
       <motion.div variants={textVariant()}>
         <p className={`${styles.sectionSubText}`}>Introduction</p>
@@ -67,16 +67,15 @@ const About = () => {
 
       {/* Profile Section */}
       <div className="mt-20 flex flex-col md:flex-row items-center gap-10">
-        {/* Profile Image with Advanced Hover Effect */}
         <motion.div
           variants={fadeIn("right", "spring", 0.5, 0.75)}
           className="w-full md:w-1/2 flex justify-center"
         >
           <Tilt
             options={{
-              max: 25, // Tilt Effect
-              scale: 1.1, // Slight Scale-Up
-              speed: 400, // Animation Speed
+              max: 25,
+              scale: 1.1,
+              speed: 400,
             }}
             className="relative"
           >
@@ -84,10 +83,10 @@ const About = () => {
               src={profileImg}
               alt="Profile"
               whileHover={{
-                scale: 1.15, // Scale Up
-                rotate: 5, // Slight Rotation
-                opacity: 0.9, // Light Opacity Change
-                boxShadow: "0px 0px 30px rgba(0, 255, 255, 0.7)", // Glowing Outline Effect
+                scale: 1.15,
+                rotate: 5,
+                opacity: 0.9,
+                boxShadow: "0px 0px 30px rgba(0, 255, 255, 0.7)",
               }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="w-[300px] h-[300px] object-cover rounded-[20px] 
@@ -96,7 +95,6 @@ const About = () => {
           </Tilt>
         </motion.div>
 
-        {/* Call to Action Section */}
         <motion.div
           variants={fadeIn("left", "spring", 0.5, 0.75)}
           className="w-full md:w-1/2 flex flex-col items-center md:items-start"
@@ -125,7 +123,46 @@ const About = () => {
           </motion.a>
         </motion.div>
       </div>
-    </>
+
+      {/* Hover-Reveal Footer */}
+      <motion.footer 
+        className="fixed bottom-0 left-0 w-full py-4 px-8 footer-blur z-20"
+        initial={{ opacity: 0.3, y: 15 }}
+        whileHover={{ 
+          opacity: 0.95,
+          y: 0,
+          transition: { duration: 0.3 }
+        }}
+        style={{
+          background: 'rgba(12, 12, 12, 0.2)',
+          borderTop: '1px solid rgba(255, 255, 255, 0.05)'
+        }}
+      >
+        <div className="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-2">
+          <p className="text-secondary text-sm order-2 md:order-1">
+            © 2025 AbuZarKhan. All rights reserved.
+          </p>
+          <div className="flex space-x-4 order-1 md:order-2">
+            <a href="https://github.com/Abu-ZarKhan" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               className="text-secondary hover:text-white transition-colors text-sm">
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/muhammad-abu-zar-khan-273239311/" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               className="text-secondary hover:text-white transition-colors text-sm">
+              LinkedIn
+            </a>
+            <a href="mailto:mabuzarkhan48@gmail.com" 
+               className="text-secondary hover:text-white transition-colors text-sm">
+              Contact
+            </a>
+          </div>
+        </div>
+      </motion.footer>
+    </div>
   );
 };
 
